@@ -23,7 +23,7 @@ pgClient.on('error', () => {
 });
 
 pgClient
-	.query('CREATE TABLE IF NOT EXISTS mytable (number INT)')
+	.query('CREATE TABLE IF NOT EXISTS fibvalues (number INT)')
 	.catch(err => console.log(err));
 
 // Redis Client setup
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 app.get('/values/all', async (req, res) => {
 	console.log('inside /values/all');
-	const values = await pgClient.query('SELECT * FROM mytable');
+	const values = await pgClient.query('SELECT * FROM fibvalues');
 	res.send(values.rows);
 });
 
@@ -63,7 +63,7 @@ app.post('/values', async (req, res) => {
 
 	redisClient.hset('values', index, 'Nothing yet!');
 	redisPublisher.publish('insert', index);
-	pgClient.query('INSERT INTO mytable(number) VALUES ($1)', [index]);
+	pgClient.query('INSERT INTO fibvalues(number) VALUES ($1)', [index]);
 
 	res.send({ working: true });
 });
