@@ -13,6 +13,11 @@
   }
 }
 
+h1 {
+	font-size: 1.5em;
+	color: black;
+}
+
 .App-header {
   background-color: #fff;
   min-height: 20vh;
