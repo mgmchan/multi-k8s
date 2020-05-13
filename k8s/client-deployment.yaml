@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: mgmchan1216/multi-client
+          image: mgmchan1216/multi-k8s-client
           # resources:
           #   limits:
           #     memory: "128Mi"
